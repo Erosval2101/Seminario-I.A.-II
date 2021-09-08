@@ -10,3 +10,4 @@ En cada carpeta que se encuentra en este repositorio está la respectiva prácti
 Las prácticas de la materia son:
 
  - Práctica 1: Perceptrón con compuerta AND y OR.
+ - Práctica 2: Perceptrón.
