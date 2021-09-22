@@ -11,3 +11,4 @@ Las prácticas de la materia son:
 
  - Práctica 1: Perceptrón con compuerta AND y OR.
  - Práctica 2: Perceptrón.
+ - Práctica 3.
