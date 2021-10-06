@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import random
+import math
 from matplotlib.widgets import TextBox, Button, Cursor
 from matplotlib.backend_bases import MouseButton
 import os
@@ -37,25 +38,24 @@ def inicializar_Pesos(pesos):
     global X
     rango = X.shape[1]
     for i in range(rango):
-        pesos.append(random.random())
+        pesos.append(random.uniform(0, 5))
     
 def mostrar_Pesos(pesos):
     for i in range(len(pesos)):
-        print("Pesos: {:.2}".format(float(pesos[i])))
+        print("Pesos: {:.4}".format(float(pesos[i])))
 
-def mostrar_Salidas(pesos, n_entradas, theta):
+def mostrar_Salidas(salidas, n_entradas):
     global X
-    salidas = []
-    v = 0
     print("Salidas: ")
-    for i in range(n_entradas):
-        for j in range(X.shape[1]):
-            v += ((pesos[j]*X[i][j]))
-                
-        v = v + theta
-        print("{:.4}".format(float(v)))
+    for i in range(len(salidas)):
+        print("{:.4}".format(float(salidas[i])))
         
 
+def funcion_Activacion(v):
+    return 1/(1 + np.exp(-v))
+
+def derivada_fact(fv):
+    return fv * (1 - fv)
 
 def entrenar_perceptron(event):
     n_entradas = len(y) # tomar entradas
@@ -76,65 +76,65 @@ def entrenar_perceptron(event):
     ax.set_xlim(0, epocas+1)
     print("Eta: {:.2}".format(float(eta)))
 
-    E = 1 # Error de salida
     E_ac = 0 # Error actual
-    Error_prev = 0 # Error previo
-    Ew = 0 # Error Cuadrático Medio
     E_red = [] # Error en el Adaline
-    E_total = 0 # Error total
+    salidas = []
 
+    pat = 0 # patron
     for epoca in range(epocas):
-        Error_prev = Ew
-        acum = -1
+        error = 0
         print("\nEpoca: ", epoca+1)
         v = 0
-        for i in range(n_entradas):
+        for i in range(n_entradas): # Obtiene salidas
             for j in range(X.shape[1]):
                 v += ((pesos[j]*X[i][j]))
-                
-            v = v + theta # calculo de la salida
-            
-            if v >= 0:
-                v = 1
-            else:
-                v = 0
 
+            v += theta
+            fv = funcion_Activacion(v) # Función de activación
+            salidas.append(fv)
 
-            if v != y[i]:
-                E_ac = (y[i] - v)
-                for k in range(len(pesos)):
-                    pesos[k] = pesos[k] + (X[i][k] * E_ac * eta) # ajuste de pesos
-                theta = theta + (-(eta * E_ac)) # ajuste de theta
-                E_total = E_total + ((E_ac)**2)
+            error += math.pow(y[i] - fv, 2) # calcula el error del Adaline
 
-                mostrar_Pesos(pesos)
-                print("Eta: {:.2}".format(float(eta)))
-                print("Umbral: {:.2}".format(float(theta)))
-            else:
-                mostrar_Pesos(pesos)
-                print("Eta: {:.2}".format(float(eta)))
-                print("Umbral: {:.2}".format(float(theta)))
-        
-        Ew = ((1/n_entradas) * E_total) # Calcular el error cuadratico medio
-        E = (Ew - Error_prev) # error del Adaline
-        E_red.append(abs(E))
-
-        ax.plot(epoca+1, abs(E), 'bo--')
-        print("\nErrores: ", abs(E))
+        error = error/n_entradas # calcula el error cuadrático medio
+        E_red.append(abs(error))
+        ax.plot(epoca+1, abs(error), 'bo--') # grafica el error cuadrático medio de la época
+        print("\nError: {:.4}".format(float(abs(error))))
         plt.pause(0.3)
 
-
-        if((abs(E)) < precision):
+        if ((abs(error)) < precision): # Condición de paro, si el error cuadrático medio es menor a la precisión
             print("\nConvergió en la época: ", epoca+1)
             print("Epocas completadas")
             ax.plot(range(1, len(E_red)+1), E_red, 'bo--', label="Error cuadrático")
             ax.legend(loc='upper right')
             plt.pause(0.3)
-            mostrar_Salidas(pesos, n_entradas, theta)
-                
+            mostrar_Salidas(salidas, n_entradas)
             return
-    
-    mostrar_Salidas(pesos, n_entradas, theta)
+        else:
+            v = 0
+            for j in range(X.shape[1]):
+                v += ((pesos[j]*X[pat][j]))
+
+            v += theta
+            fv = funcion_Activacion(v)
+
+
+            dfv = derivada_fact(fv) # Se obtiene la derivada de la función de activación
+            E_ac = (y[pat] - fv) # Error actual
+            for k in range(len(pesos)):
+                pesos[k] = pesos[k] + (X[pat][k] * E_ac * eta * dfv) # ajuste de pesos
+            
+            theta = theta + (-(eta * E_ac)) # ajuste de theta
+            pat = pat + 1
+
+            mostrar_Pesos(pesos)
+            print("Eta: {:.2}".format(float(eta)))
+            print("Umbral: {:.2}".format(float(theta)))
+        
+        if pat >= n_entradas:
+            pat = 0
+        
+        mostrar_Salidas(salidas, n_entradas)
+        salidas = []
     
     ax.plot(range(1, len(E_red)+1), E_red, 'bo--', label="Error cuadrático")
     ax.legend(loc='upper right')
