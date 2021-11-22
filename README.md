@@ -12,3 +12,6 @@ Las prácticas de la materia son:
  - Práctica 1: Perceptrón con compuerta AND y OR.
  - Práctica 2: Perceptrón.
  - Práctica 3.
+ - Práctica 4. Adaline.
+ - Práctica 5. Red Neuronal Monocapa.
+ - Práctica 6. Red Neruonal Multicapa
