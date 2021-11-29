@@ -1,0 +1,53 @@
+{"intents": [
+        {"tag": "saludo",
+         "patterns": ["Hola", "Un saludo"],
+         "responses": ["Hola, soy un Chatbot que te orienta en temas de I.A. Que deseas preguntar?"],
+         "context": [""]
+        },
+        {"tag": "despedida",
+         "patterns": ["Adios", "Hasta luego", "Nos vemos", "Bye", "Hasta pronto"],
+         "responses": ["Adios", "Que tengas un buen dia", "Fue un placer ayudarte, hasta pronto"],
+         "context": [""]
+        },
+        {"tag": "gracias",
+         "patterns": ["Gracias", "Muchas gracias", "Que bien, gracias", "Gracias por ayudarme"],
+         "responses": ["De nada!", "No hay problema! ;)", "Fue un placer"],
+         "context": [""]
+        },
+        {"tag": "sinrespuesta",
+         "patterns": [],
+         "responses": ["Disculpa, no puedo entenderte", "Por favor, escriba correctamente", "Lo siento, no puedo entenderte"],
+         "context": [""]
+        },
+        {"tag": "perceptron",
+         "patterns": ["Que es un perceptron?", "Como funciona un perceptron?", "Para que sirve un perceptron?"],
+         "responses": ["Un perceptron es la forma mas simple de una red neuronal artificial usada para la clasificacion de patrones. El perceptron consiste en tener pesos sinapticos (w1, w2, ..., wn) y umbral ajustable (theta), usado en la clasificacion de datos. El proposito del perceptron es clasificar un conjunto de entradas x en una de dos clases, dependiendo de la salida que mande dicho algoritmo."],
+         "context": [""]
+        },
+        {"tag": "adaline",
+         "patterns": ["Que es un adaline?", "Como funciona un adaline", "Para que sirve un adaline?"],
+         "responses": ["El adaline (de ADAptative LINear Element) es un tipo de red neuronal artificial desarrollada por el profesor Bernard Widrow y su alumno Ted Hoff en la Universidad de Stanford en 1960. El modelo esta basado en la Neurona de McCulloch-Pitts. Entre las características que posee esta red artificial tenemos que su aprendizaje es de tipo Off-Line el cual requiere de un conjunto de datos de entrenamiento y datos de prueba que ajusten los pesos de las conexiones de la red neuronal en función de las diferencias que existen entre los valores deseados y los obtenidos en las señales de salida."],
+         "context": [""]
+        },
+        {"tag": "red_neuronal_monocapa",
+         "patterns": ["Que es una red neuronal monocapa?", "Como es una red neuronal monocapa?", "Como funciona una red neuronal monocapa?"],
+         "responses": ["La red neuronal unicapa se corresponde con la red neuronal mas simple, esta compuesta por una capa de neuronas que proyectan las entradas a una capa de neuronas de salida donde se realizan los diferentes calculos. Las redes unicapa se utilizan tipicamente en tareas relacionadas en lo que se conoce como autoasociacion: por ejemplo, para regenerar informaciones de entrada que se presentan a la red incompletas o distorsionadas"],
+         "context": [""]
+        },
+		{"tag": "red_neuronal_multicapa",
+         "patterns": ["Que es una red neuronal multicapa?", "Como es una red neuronal multicapa?", "Como funciona una red neuronal multicapa?"],
+         "responses": ["Una red neuronal multicapa es una generalizacion de la red neuronal monocapa y surgio como consecuencia de las limitaciones de dicha arquitectura en lo referente al problema de la separabilidad no lineal. La arquitectura de esta red se caracteriza porque tiene sus neuronas agrupadas en capas de diferentes niveles. Cada una de las capas esta formada por un conjunto de neuronas y se distinguen tres tipos de capas diferentes: la capa de entrada, las capas ocultas y la capa de salida."],
+         "context": [""]
+        },
+		{"tag": "backpropagation",
+         "patterns": ["Que es backpropagation?", "Como funciona el backpropagation?"],
+         "responses": ["Backpropagation es un método de calculo del gradiente utilizado en algoritmos de aprendizaje supervisado utilizados para entrenar redes neuronales artificiales. El metodo emplea un ciclo propagacion - adaptacion de dos fases. Una vez que se ha aplicado un patron a la entrada de la red como estímulo, este se propaga desde la primera capa a través de las capas siguientes de la red, hasta generar una salida."],
+         "context": [""]
+        },
+        {"tag": "neurona",
+         "patterns": ["Que es una neurona?", "Como funciona una neurona?", "Como se enciende una neurona?"],
+         "responses": ["La neurona es una celula cerebral individual, quienes envian y reciben información por cada una. Una neurona funciona recibiendo informacion por medio de dendritas, posteriormente pasa a la soma y nucleo de la neurona. Despues, el cono axonico decide si dicha informacion pasa a la siguiente parte de la neurona o no. En caso de pasar, manda la informacion al axon y, por ultimo, a su terminal. Asi, manda la informacion obtenida a otra neurona. Cuando otra neurona comienza a comunicarse por medio de las dendritas. Estas, al recibir la señal de la neurona ajena, abren un canal receptor que permite a la señal entrar a la neurona. Cuando entre la suficiente carga positiva (iones), la neurona decide enviar dicha señal a la neurona siguiente por medio del cono axonico y el axon y su terminal."],
+         "context": [""]
+        }
+   ]
+}
