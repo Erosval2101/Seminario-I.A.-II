@@ -14,4 +14,6 @@ Las prácticas de la materia son:
  - Práctica 3.
  - Práctica 4. Adaline.
  - Práctica 5. Red Neuronal Monocapa.
- - Práctica 6. Red Neruonal Multicapa
+ - Práctica 6. Red Neruonal Multicapa.
+ - Práctica 7. Aproximación de funciones.
+ - Proyecto Final.
